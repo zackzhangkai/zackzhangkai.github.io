@@ -9,15 +9,45 @@ permalink: /note/
 
 ------------
 
-2022.1.18
+2022.2.24
+---------
++ [frp](https://github.com/fatedier/frp)真是个好东西，可以将本地的服务映射到服务器上，这样服务在访问服务器上的某个服务就直接到了本地。这有三个应用场景：1.可以很快的实现远程连接，如将本地的端口暴露到远端 2.可以把家里闲置的电脑当作一个服务器，如：只需要在公网上有一个服务器，把本地的一服务映射过去。3.方便本地调试，代码在本地跑起来，直接映射到服务器上，把服务器上原先的服务停掉，流量就到了本地。
+
++ `关于各语言的IDE推荐`，原则：尽量使用jetbrains的IDE、少花钱
+  1. Java推荐IDEA
+  2. Go 推荐 Goland
+  3. C/C++ 推荐使用 Vscode，原因clion破解太难。看仓库，如果仓库中有.vscode的目录，无脑使用vscode就OK。如envoy官方仓库。
+
++ [如何使用vscode看Linux源码](http://119.23.219.145/posts/linux-kernel-linux-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%B7%A5%E5%85%B7%E5%92%8C%E8%B5%84%E6%96%99/)
+  1. vscode需要添加插件 **C/C++ GNU Global* 及 C++/c 扩展
+
++ [为什么总是技术人容易被踢出局](https://www.zhihu.com/question/327063112/answer/2121708882)
+  1. 技术人忙于技术，劳心者治于人，劳力者治于人
+  2. 资本进来后，共患难容易，同甘难。对于技术人员，入司前谈好待遇、分红、参股，不要觉得自己做出成果后，公司自然会给。这就好像律师费一样，打官司之前谈妥，那是你的功劳你的酬劳；打完官司之后谈，那是我本来就能赢。
+
+2022.2.23
+-----------
++ [Docker在走下坡路吗](https://mp.weixin.qq.com/s/pdmDjdQNbYC6g1EKI1zlcA)
+  1. Docker作为一家初创公司，技术创新，横空出世，降维打击传统技术，受到开发者热棒，但是过了仅仅数年，就被Google巨头给干爬下了。
+  2. 在kubernetes刚推出及未推出来还不成气候的时候，还依赖于Docker运行时。Docker也曾一度达到热度极点，可当Kubernetes壮大后，推出了自己的rkt运行时，之后设定cri标准，docker将自已的核心放在了containerd，为了适配自己又推出docker-shim垫片，最后架构越来越来长，docker只剩下了一个空壳，谁都可以去替换它，就没落了。
+
+
+2022.2.22
+---------
++ [mediafire](https://app.mediafire.com/myfiles)在国外是最常用的文件共享工具，其次才是google drive及one drive。该工具支持匿名上传文件，生成一个免费的对象存储地址供他人下载。如我[上传的文件](https://www.mediafire.com/view/bipzo9egshhkrhd/gaitubao_Zack%25E4%25B9%258B%25E4%25BA%2591%25E5%258E%259F%25E7%2594%259F_%25281%2529.png/file)
++ [bypass-paywalls](https://github.com/iamadamdev/bypass-paywalls-chrome)是一个浏览器插件，通过名字理解其意思“绕过付费墙”。外媒网站如果要看一般都需要你去登陆，根据付费情况，有浏览次数的限制（如medium就是如此）。该插件就是扫除这些障碍，无需登陆，任意数量的浏览。
+
+2022.2.18
 ----------
-+ `go mod why`可以查看为什么需要引用这个包
-  ```bash
-  go mod why -m  k8s.io/client-go
-  # k8s.io/client-go
-  csm-apiserver/third-party/kiali/kubernetes/cache
-  k8s.io/client-go/informers
-  ```
++ [`zlib`](https://zh.wikipedia.org/wiki/Z-Library)是最大的免费在线图书馆，简单来讲，最大的盗版商，支持个人用户上传，接受捐赠。对于个人来讲，可以[免费下载很多的在线电子书](https://zh.cn1lib.org/)，真香。
+
++ [跑步电台](https://justinyan.me/post/category/podcast)，听了一期，声音很清晰，主持人谈吐听得很舒服
+
++ [三年负债从从8万变80万](https://www.v2ex.com/t/833951#reply40)，别人的是故事，如果是自己身上就是事故。我所理解的创业是水道渠成的事情，而不是为了创业而创业。好比一切都已经准备好，觉得有必要真正的光明正大的开始以此为业，并有稳定的收入，可持续发展，才正是挂牌当老板。
+
+2022.2.15
+----------
++ [`莱布尼茨`](https://zh.wikipedia.org/wiki/%E6%88%88%E7%89%B9%E5%BC%97%E9%87%8C%E5%BE%B7%C2%B7%E8%8E%B1%E5%B8%83%E5%B0%BC%E8%8C%A8)受中国《易经》八卦的启示，发明了二进制，推动了计算机的发明。另外还发明了微积分。
 
 2022.1.18
 ----------
@@ -33,6 +63,14 @@ permalink: /note/
     nil
     gore>
     ```
+    
++ `go mod why`可以查看为什么需要引用这个包
+  ```bash
+  go mod why -m  k8s.io/client-go
+  # k8s.io/client-go
+  csm-apiserver/third-party/kiali/kubernetes/cache
+  k8s.io/client-go/informers
+  ```
 
 2022.1.12
 ----------

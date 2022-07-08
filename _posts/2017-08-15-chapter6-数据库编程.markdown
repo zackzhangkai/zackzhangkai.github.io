@@ -1,0 +1,149 @@
+---
+layout:       post
+title:        "chapter6-数据库编程"
+date:         2017-08-15 12:00:00
+categories: project
+tag:
+  - python
+  - 数据库编程
+---
+
+* content
+{:toc}
+
+### 简介
+很多应用数据取自数据库，sql关系型数据库，如SQL Server、PostgreSQL和MySQL等；一些非关系型数据库(NoSQL); Python内置的sqllite3; 从表中选取数据时，大部分Python SQL驱动器(PyODBC、psycopg2、MySQLdb、pymssql)都会返回一个元组列表;
+文件或简单的持久化存储可以满足一些小应用的需求，而大型服务器或高数据容量的应用则需要更加成熟的数据库系统，常用的有关系型数据库、非关系型数据库以及对象关系映射ORM。
+### 持久化存储
++ 底层存储:在任何应用中都需要持久化存储，一般有三基础存储机制:文件、数据库系统以及一些混合类型。混合类型包括现有系统上的API/ORM/文件管理器/电子表格/配置文件等。数据库通常使用文件系统作为基本的持久化存储，它可以是普通的操作系统文件、专用的操作系统文件，甚至是原始的磁盘分区。
++ 用户接口:大多数数据库提供了命令行工具，可以用其执行SQL语句或查询。此外还有一些GUI工具，使用命令行客户端或数据库客户端库，向用户提供更加便捷的界面。
++ RDBMS关系数据库管理系统
++ 组件：数据存储可以抽象为一张表。每行数据都有一些字段对应数据库的列。每一列的表定义的集合以每个表的数据类型放到一起定义了数据库的模式schema。create/drop/insert/delete/update/query
+```
+#创建数据库
+CREATE DATABASE test CHARACTER SET utf8;
+#创建用户
+CREATE USER 'kaiz'@'192.168.0.11' IDENTIFIED BY 'kaiz@123';
+#授权
+GRANT ALL ON test.* to kaiz;
+或grant all privileges on salt.* to salt@172.16.1.96 identified by "PrdQuark@123";
+#刷新授权表
+flush privileges;
+#使用数据库
+USE test;
+#删除数据库
+DROP DATABASE test;
+#创建表，包含字符串列login,两个整数列userid,projid
+CREATE TABLE users (login VARCHAR(8), userid INT, projid INT);
+#删除表
+DROP TABLE users;
+#插入行,需要指定表名及每列的值VALUES
+INSERT INTO users VALUES('kaiz',123,456)
+#更新行
+UPDATE users SET projid=678 WHERE projid=3;
+UPDATE users SET projid=789 WHERE userid=433;
+#删除行，如下，指定准备删除的行的表名以及可选的条件，若没有这个条件，则会像第二个例子一样，把所有的行全部删除。
+DELETE FROM users WHERE prijid=%d;
+DELETE FROM users;
+```
+### 数据库和python
+访问数据库分两种：直接通过数据库接口访问和使用ORM访问两种形式。其中ORM访问的方式不需要显式给出SQL命令，也能完成相同的任务。在python中数据库是通过适配器的方式进行访问的。适配器是一个python模块，使用它可以与关系数据库的客户端接口相连。
+
+### DB-API模块属性
++ apilevel
++ threadsafety
++ paramstyle
++ connect()： Connetct()函数,user,password,host,database,dsn
++ 多种异常
+```
+connect(dsn='myhost:MYDB',user='guido',password='234$')
+```
+使用DSN还是独立的参数主要基于所连接的系统。如果你使用的对象是ODBC或JDBC的API，则需要使用DSN;而如果是直接使用数据库，则更倾向于使用独立的登录参数。另一个使用DSN的原因是很多数据库适配器并没有实现 对DSN的支持。下面是没有使用DSN的connect()调用。需要注意的是，并不是所有的适配器都会严格按照标准实现，比如，MySQLdb使用了db而不是database.
+```
+MySQLdb.connect(host='dbserv',db='inv',user='smith')
+PgSQL.connect(database='sales')
+psycopg.connect(database='template1',user='pgsql')
+gadfly.dbapi2.0.connect('csrDB','/usr/local/database')
+sqllite3.connect('marketing/test')
+```
+### connection对象
+应用与数据库之间进行通信需要建立数据库连接。它是最基本的机制，只有通过数据库连接才能把命令传递到服务器，并得到返回的结果。当一个连接池建立后，可以创建一个游标，向数据库发送请求，然后从数据库中接收回应。
+#### connection对象方法
++ close()： 关闭数据库连接
++ commit(): 提交当前事务
++ rollback(): 取消当前事务
++ cursor(): 使用该连接创建(并返回)一个游标或类游标的对象
++ errorhandler(cxn,cur,errcls,errval): 作为给定连接的游标的处理程序
+当使用close()时，这个连接将将不能使用，否则会进入到异常处理中。如果数据库不支持事务处理，或启用了自动提交功能，commit()方法将也不能用。rollback()方法也只有在支持事务处理的数据库中才有用。发生异常之后，rollback()会将数据库的状态恢复到事务处理开始时。“关闭连接而不事先提交变更，将会隐式回滚”。当你完成数据库连接并关闭游标时，需要对所有操作执行commit()，并对你的连接执行close()
+#### cursor对象
+当建立连接后，就可以数据库进行通信了。游标可心让用户提交数据库命令，并获得查询的结果行。python DB-API游标对象总能提供游标的功能，即使是那些不支持游标的数据库。此时，如果你创建了一个数据库适配器，还必须要实现 cursor对象，以扮演类似游标的角色。这样，无论你将数据系统切换到支持游标的数据库还是不支持的，都能保持python代码的一致性。当游标创建好后，就可以执行查询或命令，并从结果集中取回一行或多行结果。
++ arraysize
++ connection 创建此游标的链接
++ description 返回游标活动状态name,type_code,display_size,internal_size
++ lastrowid
++ callproc()
++ close()
++ execute(op[,args]) 执行数据库查询或命令
++ executemany(op,args)
++ fetchone() 获取查询结果下一行
++ fetchmany([size=cursor.arraysize])
++ fetchall()
++ \__iter\__()
++ messages
++ next()
++ nextset()
++ rownumber
++ setinputsizes(sizes)
++ setoutputsize(size[,col])
+### python数据库系统接口
++ 商业RDBMS：IBM Informix/Sybase/Oracle/Microsoft SQL Server/IBM DB2/SAP/Embarcadero Interbase/Ingres
++ 开源RDBMS： MySQL/PostgreSQL/SQLite/Gadfly
++ 数据库API: JDBC/ODBC
++ 非关系数据库： MongoDB/Redis/Cassandra/SimpleDB/Tokyo Cabinet/CouchDB/Bigtable
+### 数据库和Python:适配器,MySQL DB API 驱动
+对于每种支持的数据库，python都有一个或多个适配器用于连接Python中的目标数据库系统。比如Sybase/SAP/Oracle/SQLSserver，这些数据库就都存在多个可用的适配器。我们需要做的事情就是挑选出最合适的适配器。我们看几个使用适配器模块与关系数据库进行通信的例子。真正的秘密在于建立连接。一旦你建立连接，并使用DB-API的对象、属性和对象方法，你的核心代码就会看起来很相似，而无须去管它使用了哪个适配器以及RDBMS。参考http://python.usyiyi.cn/translate/django_182/ref/databases.html
+
+#### PyMySQL
+
+#### MySQLdb
+它是惟一不支持python3的驱动，安装如下
+
+>pymsql 是 Python 中操作MySQL 的模块，其使用方法和 MySQLdb 几乎相同。但目前在 python3.x 中，PyMySQL 取代了 MySQLdb
+
+```
+easy_install mysql-python (mix os)
+pip install mysql-python (mix os)
+apt-get install python-mysqldb (Linux Ubuntu, ...)
+cd /usr/ports/databases/py-MySQLdb && make install clean (FreeBSD)
+yum install MySQL-python (Linux Fedora, CentOS ...)
+```
++ 方法一，不使用游标，有connection对象，使用query()方法执行SQL查询；不过不建议使用这种方法，也并不是所有的适配器都有这种方法。commit()方法是可选的，因为MySQL默认是开启自动提交。
++ 方法二，
+```
+cxn = MySQLdb.connect(host='192.168.0.12',user='kaiz',passwd='kaiz@123',db='test')
+cxn.query('create table stu (name char(8),age int)')
+cxn.query('insert into test.stu values("kaiz",222)')
+cxn.commit()
+cxn.close()
+```
++ 使用游标cursor
+```
+cxn = MySQLdb.connect(host='192.168.0.12',db='test',user='amm',passwd='kaiz@123')
+cur = cxn.cursor()
+In [73]: cur.execute('create table menber (name char(8),id int) ')
+Out[73]: 0L
+In [76]: cur.execute('insert into menber values ("amm",2222223)')
+Out[76]: 1L
+In [78]: cur.execute("select * from test.menber")
+Out[78]: 1L
+In [79]: for data in cur.fetchall():
+   ....:     print data
+   ....:     
+('amm', 2222223L)
+```
+#### mysqlclient
+该表现更相似于MySQLdb
+#### MySQL Connector/Python
+
+### ORM
+将数据库表转化python类，其中的数据列作为属性，而数据库操作则会作为方法。目前最知名的python ORM是SQL

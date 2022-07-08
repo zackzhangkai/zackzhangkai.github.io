@@ -1,0 +1,30 @@
+<footer class="footer" role="contentinfo">
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014-{{ site.time | date: '%Y' }} <a href="{{site.resume_site}}"><code>{{ site.author }}</code></a>.</p>
+	</div>
+</footer>
+
+<script src="{{ '/styles/js/jquery.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/styles/js/bootstrap.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/styles/js/holder.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/styles/js/lessismore.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/styles/js/application.js' | prepend: site.baseurl }}"></script>
+
+<section class="post-full-comments">
+    {{!-- gittalk --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+    <div id="gitalk-container"></div>
+    <script>
+        var gitalk = new Gitalk({
+			clientID: '08f3656cc49a7e0795b3',
+			clientSecret: '89f388a77813f4dab01ca737b819a5156e73fe46',
+			repo: 'zackzhangkai.github.io',
+			owner: 'zackzhangkai',
+			admin: 'zackzhangkai',
+			id: location.pathname,      // Ensure uniqueness and length less than 50
+			distractionFreeMode: false  // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
+</section>

@@ -1,0 +1,281 @@
+---
+layout:       post
+title:        "jquery"
+date:         2017-09-27 12:00:00
+categories: document
+tag:
+  - jquery
+  - 前端
+---
+
+* content
+{:toc}
+
+
+### jquery语法
+通过jquery，可以选取（查询，query）HTML元素，并对它们执行“操作”actions；
+$(selector).action():美元符号定义jquery,选择符selector查询和查找HTML元素；jquery的action()执行对元素的操作
+```
+$(this).hide() 隐藏当前元素
+$("p").hide() 隐藏所有<p>元素
+$("p.test").hide()  隐藏所有 class="test"的<p>元素
+$("#test").hide() 隐藏所有id="test"的元素
+```
+
+### 文档就绪事件
+也许你会发现在很多实例中所有的jQuery函数位于一个document ready函数中
+```
+$(document).ready(function(){
+  //开始写jQuery代码..  
+  })
+```
+这是为了防止在文档完全加载之前运行jQuery代码，即在DOM加载完成后才可以对DOM进行操作。因为如果在文档未加载完全之前运行有可能失败。简介写法，与上面完全等效：
+```
+$(function(){
+  //开始写jQuery代码
+  })
+```
+### jQuery选择器
+jQuery选择器允许你对HTML元素组或单个元素进行操作。选择器基于元素的id、类、类型、属性、属性值等查找选择HTML元素。jQuery中所有的选择器都以$()开头。
++ 基于元素名选取元素
+```
+# $("p")
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").hide();
+    })
+  })
+```
++ 基于id
+```
+# $("#test")
+$(document).ready(function(){
+  $("button").click(function(){
+    $("#test").hide();
+    })
+  })
+```
++ .class
+```
+# $(".test")
+$(document).ready(function(){
+  $("button").click(function(){
+    $(".test").hide();
+    })
+  })
+```
+
+### jQuery事件
+页面对不同访问者的响应叫做事件。事件处理程序是当HTML中发生某些事件时所调用的方法。如实例“在元素上移动鼠标、选取单选按钮、点击元素”，在事件中经常用的术“触发、激发”，如“当您按键时触发keypress事件”
+常见的DOM事件：
+
+鼠标事件   |键盘事件|表单事件|文档/窗口事件
+---|---
+click     |keypress|submit |load
+dblclick  |keydown |change |resize
+mouseenter|keyup   |focus  |scroll
+mouseleave|        |blur   |upload
+
+#### 语法
+```
+#页面中指定一个点击事件
+$("p").click;
+#下一步定义什么时间触发事件，通过事件函数实现
+$("p").click(function(){
+  //动作触发后执行的代码
+  })
+```
+### jQuery捕获
+获取内容和属性。DOM操作（文档对象模型，定义访问HTML和XML文档的标准）
+#### 获取内容
++ text() : 设置或返回选取元素的文本内容
++ html() ： 元素内容，包括HTML标记
++ val() ： 表单字段的值
+```
+$("#btn1").click(function(){
+  alert("Text: " + $("#test").text());
+});
+$("#btn2").click(function(){
+  alert("HTML: " + $("#test").html());
+});
+```
+#### 获取元素
++ attr()
+
+### 设置内容和属性
+#### 设置内容
++ text() : 设置或返回选取元素的文本内容
++ html() ： 元素内容，包括HTML标记
++ val() ： 表单字段的值
+```
+$("#btn1").click(function(){
+    $("#test1").text("Hello world!");
+});
+$("#btn2").click(function(){
+    $("#test2").html("<b>Hello world!</b>");
+});
+$("#btn3").click(function(){
+    $("#test3").val("RUNOOB");
+});
+```
+#### 设置属性
++ attr()
+### jQuery  Ajax
+ajax是与服务器交换数据的技术，它在不重载全部页面的情况下，实现了对部份网页的更新
+#### 语法
+```
+$.ajax({name:value, name:value, ... })
+```
+
+名称 |值/描述
+---|---
+async |布尔值，表示请求是否异步处理。默认是 true。
+beforeSend(xhr) |发送请求前运行的函数。
+cache |布尔值，表示浏览器是否缓存被请求页面。默认是 true。
+complete(xhr,status) |请求完成时运行的函数（在请求成功或失败之后均调用，即在 success 和 error 函数之后）。
+contentType |发送数据到服务器时所使用的内容类型。默认是："application/x-www-form-urlencoded"。
+context |为所有 AJAX 相关的回调函数规定 "this" 值。
+data |规定要发送到服务器的数据。
+dataFilter(data,type)|用于处理 XMLHttpRequest 原始响应数据的函数。
+dataType |预期的服务器响应的数据类型。
+error(xhr,status,error) |如果请求失败要运行的函数。
+global |布尔值，规定是否为请求触发全局 AJAX 事件处理程序。默认是 true。
+ifModified |布尔值，规定是否仅在最后一次请求以来响应发生改变时才请求成功。默认是 false。
+jsonp |在一个 jsonp 中重写回调函数的字符串。
+jsonpCallback |在一个 jsonp 中规定回调函数的名称。
+password |规定在 HTTP 访问认证请求中使用的密码。
+processData |布尔值，规定通过请求发送的数据是否转换为查询字符串。默认是 true。
+scriptCharset |规定请求的字符集。
+success(result,status,xhr) |当请求成功时运行的函数。
+timeout|设置本地的请求超时时间（以毫秒计）。
+traditional |布尔值，规定是否使用参数序列化的传统样式。
+type |规定请求的类型（GET 或 POST）。
+url |规定发送请求的 URL。默认是当前页面。
+username |规定在 HTTP 访问认证请求中使用的用户名。
+xhr |用于创建 XMLHttpRequest 对象的函数。
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$.ajax({url:"demo_test.txt",success:function(result){
+			$("#div1").html(result);
+		}});
+	});
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>使用 jQuery AJAX 修改文本内容</h2></div>
+<button>获取其他内容</button>
+
+</body>
+</html>
+```
+
+#### load()
+load()方法从服务器加载数据并把返回的数据放入被选的元素中。
+```
+#语法
+$(selector).load(URL,data,callback);
+#URL希望加载的URL;可选的data与请求一同发送的查询字符串键值对集合；可选的callback参数是load()完成后所执行的函数。
+#可选的 callback 参数规定当 load() 方法完成后所要允许的回调函数。回调函数可以设置不同的参数：
+#    responseTxt - 包含调用成功时的结果内容
+#    statusTXT - 包含调用的状态
+#    xhr - 包含 XMLHttpRequest 对象
+
+```
+如：
+```
+$("#div1").load("demo_test.txt");
+```
+如：
+```
+$("button").click(function(){
+  $("#div1").load("demo_test.txt",function(responseTxt,statusTxt,xhr){
+    if(statusTxt=="success")
+      alert("外部内容加载成功!");
+    if(statusTxt=="error")
+      alert("Error: "+xhr.status+": "+xhr.statusText);
+  });
+});
+```
+#### GET POST
++ $.get() 方法通过 HTTP GET 请求从服务器上请求数据。
+语法：
+```
+$.get(URL,callback);
+```
+如：
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$.get("/try/ajax/demo_test.php",function(data,status){
+			alert("数据: " + data + "\n状态: " + status);
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+<button>发送一个 HTTP GET 请求并获取返回结果</button>
+
+</body>
+</html>
+```
+
++ $.post() 方法通过 HTTP POST 请求从服务器上请求数据。
+语法
+```
+$.post(URL,data,callback);
+#必需的 URL 参数规定您希望请求的 URL。
+#可选的 data 参数规定连同请求发送的数据。
+#可选的 callback 参数是请求成功后所执行的函数名
+```
+如：
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$.post("/try/ajax/demo_test_post.php",{
+			name:"菜鸟教程",
+			url:"http://www.runoob.com"
+		},
+		function(data,status){
+			alert("数据: \n" + data + "\n状态: " + status);
+		});
+	});
+});
+</script>
+</head>
+<body>
+
+<button>发送一个 HTTP POST 请求页面并获取返回内容</button>
+
+</body>
+</html>
+```

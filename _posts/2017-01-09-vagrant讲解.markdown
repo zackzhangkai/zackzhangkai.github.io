@@ -1,0 +1,266 @@
+---
+layout:       post
+title:        "vagrant讲解"
+date:         2017-01-09 12:00:00
+categories: document
+tag: vagrant
+---
+
+* content
+{:toc}
+
+## vagrant概述
+
+Vagrant是一个基于Ruby的工具，用于创建和部署虚拟化开发环境，用Vagrant，可快速的自动化的从模板box虚拟机创建出新的虚拟机，启停虚拟机，开发测试，不用了destroy虚拟机
+
+官网 https://www.vagrantup.com
+### vagrant 常用命令
++ `vagrant halt` 停机
++ `vagrant up` 开机
++ `vagrant destroy` 杀掉虚机所有进程和物理文件，回收资源。
++ `vagrant status` 查看当前guestmachine开关机状态。
++ `vagrant box add centos/7; cd project ; vagrant init centos/7` 初始化vagrant环境
++ `vagrant init centos/7 ; vagrant up --provider virtualbox` 初始化vagrant环境
++ `vagrant box list` 列举 box
++ `vagrant reload` 在修改配置文件后，reload重新载入
+
+## 安装
++ 下载安装virtualbox，版本不要用最新的，用4.3.40即可， 网址 https://www.virtualbox.org/wiki/Download_Old_Builds
++ 下载安装 vagrant，推荐用1.8.4  网址 https://releases.hashicorp.com/vagrant
++ 下载box，第三方网址： http://www.vagrantbox.es/ ，也可用command line让其自动从官网下载
+
+## Vagrantfile
+
+一个项目用一个Vagrantfile，vagrant支持多种平台，vagrantfile的语法是Ruby
+
+### config.vm
+
+config.vm改变machine
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "BOX"
+  config.vm.provision :shell,path: "bootstrap.sh"
+end
+```
+
+> "2"表示配置版本，目前有1和2两个version，一个配置部分只能使用一个配置版本。
+
++ config.vm.provision
++ config.vm.network
++ config.vm.box_version
+
++ config.vm.synced_folder 共享文件夹
++ config.vm.box 此处需设置为已安装的box名，否早会报错。版本要求1.5以上；
++ config.vm.box_check_update 检查是否更新，默认关。
++ config.vm.box_download_checksum  box的checksum被config.vm.box_url指定。若未指定，则不被校验。
++ config.vm.box_download_checksum_type 校验类型md5 sha1 sha256
++ config.vm.box_download_client_cert 证书，一般为关。
++ config.vm.box_download_ca_cert CA证书，等等。
++  config.vm.boot_timeout 开机访问延时，默认300s
+[更多](https://www.vagrantup.com/docs/vagrantfile/machine_settings.html)
+
+### config.ssh
+通过ssh如何进入machine
+
++ config.ssh.username  设置ssh的username,默认为vagrant
++ config.ssh.password  设置password , vagrant建议使用key-based authentication（密钥验证），请看 private_key_path
++ config.ssh.host  SSH要连接的hostname或IP，默认为空。
++ config.ssh.port 默认22，等等。
+[更多](https://www.vagrantup.com/docs/vagrantfile/ssh_settings.html)
+
+ [config.winr](https://www.vagrantup.com/docs/vagrantfile/winrm_settings.html) 及
+ [config.vagrant](https://www.vagrantup.com/docs/vagrantfile/vagrant_settings.html)
+
+## provisioning
+
+当vagrant up时，自动安装软件、修改配置文件等。你也可以在vagrant up后手动操作。用provision可减少重复操作，无需交互，若要重新创建一个新的环境，只需vagrant destroy ; vagrant up即可。
+
+### shell
++ inline scripts
+```
+config.vm.provision "shell", inline: "echo Hello, World" 
+```
+OR
+```
+$script = <<SCRIPT
+echo I am provisioning...
+date > /etc/vagrant_provisioned_at
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.provision "shell", inline: $script
+end
+```
++ external scripts
+```
+config.vm.provision "shell", path: "script.sh"
+```
+相对路径，执行hostmachine当前路径下的script.sh，同时也可使用绝对路径。path也可为一个url;若执行guestmachine的脚本，则为
+```
+config.vm.provison "shell", inline: "/bin/bash" /path/to/the/script/already/on/the/guest.sh
+```
+[更多](https://www.vagrantup.com/docs/provisioning/shell.html#inline-scripts)
+
+## NETWORKING
+
+### forwarded_port
+```
+config.vm.network "forwarded_port", guest:80, host:8080, protocal: "tcp" 
+```
+
+### Private Network
++ DHCP
+```
+config.vm.network "private_network", type: "dhcp" 
+```
++ static IP
+```
+config.vm.network "private_network", ip: "192.168.50.4" 
+```
+
+### public network
+
++ DHCP
+```
+config.vm.network "public_network" ,type: 'dhcp'
+```
++ static IP
+```
+config.vm.network "public_network", ip: "192.168.0.17" 
+```
+>若host machine有多个interface，可用参数bridge指定默认：
+```
+config.vm.network "public_network",bridge: "en1:Wi-Fi"
+```
+
++ Diable AUTO-Configuration
+
+```
+Vagrant.configre("2") do |config|
+  config.vm.network "public_network",auto_config: false
+```
+
++ manual IP
+
+```
+  config.vm.provision "shell",
+    run: "always",
+    inline: "ifconfig eth1 192.168.0.17 netmask 255.255.255.0 up"
+end
+```
+ [更多及Default Router](https://www.vagrantup.com/docs/networking/public_network.html)
+
+
+## Synced Folders
+
+在host machine及guest machine之间的文件共享
+
++ Basic Usage
+```
+config.vm.synced_folder "src/", "/srv/website"
+  owner: "root", group: "root"
+```
+
+hostmachine: src/ 相对路径，相对于项目的根目录; guestmachine: /srv/website，必须是绝对路径，若该路径不存在，则会自己创建。
+
++ NFS
+
+host/guest machine须装nfsd服务，同时，guest machine若是virtualbox provider，则需配置private network.若是vmware，则无需。[更多](https://www.vagrantup.com/docs/synced-folders/nfs.html)
+
+```
+config.vm.synced_folder ".", "/vagrant", type: "nfs" 
+```
+
++ rsync
+
+当NFS和VirtualBox方法不可用时，再考虑用这个方法。
+
+```
+config.vm.synced_folder ".", "/vagrant", type: "rsync",
+  rsync__exclue: ".git/" 
+ ```
+
++ SMB
+
+hostmachine是windows时才用这个。
+
+```
+config.vm.synced_folder ".", "/vagrant", type: "smb" 
+```
+
++ Virtualbox
+
+当使用 Vagrant VirtualBox provider时，这个是首选。
+
+```
+config.vm.synced_folder ".", "/vagrant", type: "virtualbox" 
+```
+
+## MULTI-MACHINE
++ 定义多个machine
+
+```
+  config.vm.define "web",primary: true do |web|
+    web.vm.box = "apache"
+    web.vm.provision :shell, inline: "echo A"
+  end
+  config.vm.define database do |db|
+    db.vm.box = "mysql"
+  end
+  config.vm.define "db2", autostart: false do |db|
+    db2.vm.box = "mysql"
+  end
+```
+用vagrant up/ssh web即可启动其中一台主机，只能定义一个primary，指定首先服务器，当autostart: fault时，当执行vagrant up，则该机器不启动。
+
+
++ 循环创建三个机器：
+ ```
+ （1，3）.each do |i|
+   config.vm.define "node-#{i}" do |node|
+     node.vm.provision "shell",
+       inine: "echo hello from nod #{i}"
+   end
+ end
+ ```
+ 
++ 循环创建
+
+```bash
+# files: Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+hosts = {
+  "node01" => "192.168.0.2",
+  "node02" => "192.168.0.3",
+  "node03" => "192.168.0.4",
+  "node04" => "192.168.0.5",
+  "node05" => "192.168.0.6"
+}
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7.2"
+  config.vm.box_url = "./vagrant-centos-7.2.box"
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm",:id,"--memory",512]
+  end
+  config.vm.define "my-keystore" do |machine|
+    machine.vm.network :private_network, ip: "192.168.0.100"
+    machine.vm.hostname = "my-keystore"
+    machine.vm.synced_folder ".","/vagrant", disabled: true
+    machine.vm.provision "shell",
+    run: "always",
+    inline: "sudo ifup enp0s8"
+  end
+  hosts.each do |name, ip|
+    config.vm.define name do |nodes|
+      nodes.vm.hostname = name
+      nodes.vm.network :private_network, ip: ip
+      nodes.vm.synced_folder ".","/vagrant", disabled: true
+      nodes.vm.provision "shell",
+        run: "always",
+        inline: "sudo ifup enp0s8"
+      end
+    end
+  end
+```

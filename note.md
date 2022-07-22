@@ -28,6 +28,10 @@ permalink: /note/
   - istio 在结合 ebpf 来提高包的转发效率，解决 iptables 性能问题
   - ebpf 是结合 xdp 来实现的
 
++ [灵雀云kube-ovn 的介绍](https://mp.weixin.qq.com/s?__biz=MzUxODU1NzY1NQ==&mid=2247484708&idx=1&sn=cac14fdd6b0fe2a40f5676a6f07b2352&source=41#wechat_redirect)
+  - ovn 是 ovs 的控制器，实现了路由器的功能，ovs 是 open vswitch 虚拟交换机。ovn open virtual network。
+  - 灵雀云的 kube-ovn 是以 k8s 的 namespace 做为一个独立的子网的。flannel 是以node 节点做为一个子网的。
+
 2022.7.12
 -----------
 + [go 项目的标准](https://github.com/golang-standards/project-layout/blob/master/README_zh.md)

@@ -16,6 +16,8 @@ permalink: /note/
   - 使用 vsphere 作虚机管理
   - 使用 podman 来管理容器
 
++ [envoy 中文指南](https://icloudnative.io/envoy-handbook/docs/gettingstarted/architecture/)
+  - envoy 的架构 listener filter/ filter chain
 
 2022.7.12
 -----------

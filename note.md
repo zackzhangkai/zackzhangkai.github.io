@@ -19,6 +19,12 @@ permalink: /note/
 + [envoy 中文指南](https://icloudnative.io/envoy-handbook/docs/gettingstarted/architecture/)
   - envoy 的架构 listener filter/ filter chain
 
++ [浅谈 servicemesh 中的 envoy](https://juejin.cn/post/6844903637710274573)
+  - vpp 是 dpdk 的实现框架，由思科贡献
+  - envoy 在实现 Quic filter来提高效率
+  - istio 在结合 ebpf 来提高包的转发效率，解决 iptables 性能问题
+  - ebpf 是结合 xdp 来实现的
+
 2022.7.12
 -----------
 + [go 项目的标准](https://github.com/golang-standards/project-layout/blob/master/README_zh.md)

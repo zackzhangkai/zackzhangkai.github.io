@@ -9,6 +9,13 @@ permalink: /note/
 
 ------------
 
+2022.7.22
+----------
++ [openshift 安装全过程](https://cloud.tencent.com/developer/article/1640415)
+  - 使用 envoy 当作负载均衡
+  - 使用 vsphere 作虚机管理
+  - 使用 podman 来管理容器
+
 
 2022.7.12
 -----------

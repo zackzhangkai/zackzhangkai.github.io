@@ -35,6 +35,22 @@ permalink: /note/
         name: elastic-credentials
   ```
 
++ [helm 详解](https://www.cnblogs.com/liugp/p/16659802.html)
+  - `helm lint`测试下 helm 包是否正常；
+  - `helm template`把 chart 的包渲染成 yaml；
+  - `helm get values `可以获取 release 中的 values 的值
+  ```bash
+  helm -n istio-system template ./files/chart/4-csmcontrollermanager-0.1.0 --set image.repo=${REPO} --kubeconfig ${KUBECONFIG} | kubectl  -n istio-system delete -f -
+  ```
+
++ [go 的框架]
+  + gin gorm beego go-micro go-kit
+  * [ent](https://github.com/ent/ent)
+
++ [graphQL]
+  + 前端自由组合查询，无需后端封装数据库CRUD API
+
+
 2022.7.22
 ----------
 + [openshift 安装全过程](https://cloud.tencent.com/developer/article/1640415)

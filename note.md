@@ -12,16 +12,16 @@ permalink: /note/
 2022.9.9
 ---------
 + [es 使用 mmap 来存储索引文件加速查询](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs)
-  -  通过初始化容器初始化内核参数
-    ```yaml
-    initContainers:
-      - command:
-        - sysctl
-        - -w
-        - vm.max_map_count=262144
-    ```
+  -  通过初始化容器初始化内核参数  
+  ```yaml
+  initContainers:
+    - command:
+      - sysctl
+      - -w
+      - vm.max_map_count=262144
+  ```
 
-+ **应用在使用数据库时，通过通过环境变量传入用户名密码，但是这样做很不安全，可以通过 k8s 的 secret 来解决**
++ **应用在使用数据库时，通过通过环境变量传入用户名密码，但是这样做很不安全，可以通过 k8s 的 secret 来解决**  
   ```yaml
   - name: ELASTIC_USERNAME
       valueFrom:
@@ -38,10 +38,10 @@ permalink: /note/
 + [helm 详解](https://www.cnblogs.com/liugp/p/16659802.html)
   - `helm lint`测试下 helm 包是否正常；
   - `helm template`把 chart 的包渲染成 yaml；
-  - `helm get values `可以获取 release 中的 values 的值
-  ```bash
-  helm -n istio-system template ./files/chart/4-csmcontrollermanager-0.1.0 --set image.repo=${REPO} --kubeconfig ${KUBECONFIG} | kubectl  -n istio-system delete -f -
-  ```
+  - `helm get values `可以获取 release 中的 values 的值  
+    ```bash
+    helm -n istio-system template ./files/chart/4-csmcontrollermanager-0.1.0 --set image.repo=${REPO} --kubeconfig ${KUBECONFIG} | kubectl  -n istio-system delete -f -
+    ```
 
 + [go 的框架]
   + gin gorm beego go-micro go-kit

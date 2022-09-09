@@ -13,7 +13,7 @@ permalink: /note/
 ---------
 + [es 使用 mmap 来存储索引文件加速查询](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs)
   -  通过初始化容器初始化内核参数  
-  ```
+  ```bash
   initContainers:
     - command:
       - sysctl
@@ -22,7 +22,7 @@ permalink: /note/
   ```
 
 + **应用在使用数据库时，通过通过环境变量传入用户名密码，但是这样做很不安全，可以通过 k8s 的 secret 来解决**  
-  ```
+  ```bash
   - name: ELASTIC_USERNAME
       valueFrom:
         secretKeyRef:

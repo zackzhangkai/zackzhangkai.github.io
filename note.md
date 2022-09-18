@@ -9,6 +9,17 @@ permalink: /note/
 
 ------------
 
+
+2022.9.18
+---------
++ [spaceVim 通过vim打造一个语言开发IDE](https://spacevim.org/cn/documentation/#%E5%9C%A8%E5%B7%A5%E7%A8%8B%E4%B8%AD%E8%BF%9B%E8%A1%8C%E6%90%9C%E7%B4%A2)
+  + 配置好vim确实很有必要，如vim的自动补全提示、高亮等，但是没有必要通过vim来开发。做得再好也超不过vscode，直接上手vscode完事。
+  + vim的操作要求非常高，其实通过 tmux可以补充vim的很多不好用的地方。
+  + 因此最佳实践是 tmux + spaceVim + vscode。
+  + 两个比较好的vim的配置：
+    + [Vim的安装与配置](https://www.chenshaowen.com/blog/vim-installation-and-configuration-on-windows-os.html)
+    + [vim配置入门-阮一峰](http://www.ruanyifeng.com/blog/2018/09/vimrc.html?ivk_sa=1024320u)
+
 2022.9.9
 ---------
 + [es 使用 mmap 来存储索引文件加速查询](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs)

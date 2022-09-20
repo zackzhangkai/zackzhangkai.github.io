@@ -9,6 +9,13 @@ permalink: /note/
 
 ------------
 
+2022.9.20
++ [google 开源的 基于 k8s 的 CICD 工具](https://skaffold.dev/docs/)
+  + istio samples 有示例
+  + 主要为了加快开发的docker 打包与部署
+  + 原理：源码保存后 ->  触发 dockerfile 自动打包后部署到 k8s
+
+---------
 
 2022.9.18
 ---------

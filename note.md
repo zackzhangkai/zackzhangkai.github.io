@@ -12,11 +12,21 @@ permalink: /note/
 2022.9.20
 + [v2ray使用了路由功能自动分流，比pac强大](https://github.com/Loyalsoldier/v2ray-rules-dat)
 + [v2ray的文档](https://github.com/zackzhangkai/zackzhangkai.github.io.git)
++ [gfw list配置proxyOmega时的规则列表](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
 + [google 开源的 基于 k8s 的 CICD 工具](https://skaffold.dev/docs/)
   + istio samples 有示例
   + 主要为了加快开发的docker 打包与部署
   + 原理：源码保存后 ->  触发 dockerfile 自动打包后部署到 k8s
 
++ [go的配置]
+  ```bash
+	GOPRIVATE="code.xxx.cn"
+	GONOPROXY="code.xxx.cn"
+	GONOSUMDB="code.xxx.cn"
+	go env -w GOINSECURE=code.xxx.cn
+	git config --global url.git@code.xxx.cn:.insteadOf https://code.xxx.cn/
+	go env -w GOPROXY=https://goproxy.cn,direct
+  ```
 ---------
 
 2022.9.18

@@ -18,7 +18,7 @@ permalink: /note/
   + 主要为了加快开发的docker 打包与部署
   + 原理：源码保存后 ->  触发 dockerfile 自动打包后部署到 k8s
 
-+ [go的配置]
++ go的配置
   ```bash
 	GOPRIVATE="code.xxx.cn"
 	GONOPROXY="code.xxx.cn"
@@ -27,11 +27,39 @@ permalink: /note/
 	git config --global url.git@code.xxx.cn:.insteadOf https://code.xxx.cn/
 	go env -w GOPROXY=https://goproxy.cn,direct
   ```
+
++ ohmyzsh
+  + 需要加入以下修复每次只提醒一个字母的问题
+    ```
+      echo ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=\'fg=60\' >> $ZSH_CUSTOM/zsh-autosuggestions_custom.zsh
+    ```
+  + 插件：
+    ```
+	plugins=(git
+	tmux
+	extract
+	gitignore
+	cp
+	git-open
+	z
+	command-not-found
+	safe-paste
+       	colored-man-pages
+	sudo
+	history-substring-search
+	kubectl
+	zsh-syntax-highlighting
+	zsh-autosuggestions)
+    ```
 ---------
 
 2022.9.18
 ---------
 + [spaceVim 通过vim打造一个语言开发IDE](https://spacevim.org/cn/documentation/#%E5%9C%A8%E5%B7%A5%E7%A8%8B%E4%B8%AD%E8%BF%9B%E8%A1%8C%E6%90%9C%E7%B4%A2)
+  + 安装
+    ```
+      curl -sLf https://spacevim.org/cn/install.sh | bash
+    ```
   + 配置好vim确实很有必要，如vim的自动补全提示、高亮等，但是没有必要通过vim来开发。做得再好也超不过vscode，直接上手vscode完事。
   + vim的操作要求非常高，其实通过 tmux可以补充vim的很多不好用的地方。
   + 因此最佳实践是 tmux + spaceVim + vscode。

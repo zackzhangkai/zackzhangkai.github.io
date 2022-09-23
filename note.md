@@ -13,6 +13,7 @@ permalink: /note/
 
 2022.9.23
 --------------
++ [微信聊天机器人，可与公众号联动](https://github.com/littlecodersh/ItChat)
 + [用例图 UML 讲解](https://www.cnblogs.com/green-jcx/p/16722916.html)
   + 边界
   + 参与者
@@ -20,7 +21,10 @@ permalink: /note/
   + 关联
   + 扩展
 
-
++ [我是如何失去团队掌控的](https://www.v2ex.com/t/882400#reply36)
+  + 管理需要专人承担，不要陷于具体事情
+  + 人的精力是有限的
+  + 管理就就是把正确的人放在正确的位置上
 
 2022.9.21
 --------------

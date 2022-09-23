@@ -67,6 +67,7 @@ permalink: /note/
   + 插件：
     ```
 	plugins=(git
+      git-open # git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 	tmux
 	extract
 	gitignore

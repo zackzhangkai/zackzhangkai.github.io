@@ -9,7 +9,12 @@ permalink: /note/
 
 ------------
 
-
+2022.9.29
+-------------
++ [REST 如何站到了自己的对立面？](https://www.infoq.cn/article/jfkZ7LHF1HbONN2sPOyw)
+  + rest 的全名是表征状态转移 represent state transfer。后端返回的 api 中会有 referenceURI，然后页面能自动根据它跳到下一个状态(如通过 html 中的 href)。而不需要前端每次根据返回的状态去调取不同的 api。
+  + GraphQL 打破了 rest 的限制，让前端任意去组装自己的查询语句，列式查询，而不需要每次通过后端返回固定的 api 格式再去显示对应的内容。
+  + rest 从诞生起就没有被用对过，现在人们对 rest 的理解是：REST=JSON API 称之为伪 Rest
 
 2022.9.23
 --------------

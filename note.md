@@ -9,6 +9,11 @@ permalink: /note/
 
 ------------
 
+2022.10.11
+--------------
++ [工具：Jsoncrack自动格式化成拓扑](https://jsoncrack.com/editor)
+  - 用来格式化envoy的配置文件非常好，可以很直观看出xds的关系
+
 2022.9.29
 -------------
 + [REST 如何站到了自己的对立面？](https://www.infoq.cn/article/jfkZ7LHF1HbONN2sPOyw)

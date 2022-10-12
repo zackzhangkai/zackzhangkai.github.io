@@ -9,6 +9,11 @@ permalink: /note/
 
 ------------
 
+
+2022.10.12
+----------
++ [问题到此为止的心态](https://www.mingyantong.com/ju/1706399)
+
 2022.10.11
 --------------
 + [工具：Jsoncrack自动格式化成拓扑](https://jsoncrack.com/editor)

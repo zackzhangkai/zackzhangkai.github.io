@@ -19,8 +19,12 @@ permalink: /note/
 
 + [每个程序员都应该看的书籍](https://stackoverflow.com/questions/1711/what-is-the-single-most-influential-book-every-programmer-should-read)
 
++ [optimizing software in C++](https://www.agner.org/optimize/optimizing_cpp.pdf)
+
++ [linkdin上必读的code review](https://thenewstack.io/linkedin-code-review/) 
 
 2022.10.18
+----------------
 + [ 开源的未来：为什么开源核心已死？](https://www.infoq.cn/article/eQRGLjAzl3mjhhwPTE14)
   1. 10年前，一个项目需要数年时间才能崭露头角。这使得企业有时间来培育自己的项目，比如提供企业商业版。但是现在事务发展快多了，企业如果这样做，使得企业得面临如自己开源的产品竞争。
 ，比如提供企业商业版。但是现在事务发展快多了，企业如果这样做，使得企业得面临如自己开源的产品竞争。

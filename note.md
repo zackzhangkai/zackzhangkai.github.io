@@ -17,6 +17,8 @@ permalink: /note/
   2. 做正确的事，然后等着被开。与其去适应糟糕的环境，不如自己去寻找适合的土壤。
   3. [继做正确的事等着被开之后问答](https://mp.weixin.qq.com/s?__biz=MzUyOTA1NTkzNw==&mid=2247484417&idx=1&sn=316f9f6d6ac7cdca97123815a67a665a&chksm=fa67adafcd1024b948caed0e5528c4817a7ef2b1b1a3ab8da34e0ff4231b28c2659ee9951112#rd)
 
++ [每个程序员都应该看的书籍](https://stackoverflow.com/questions/1711/what-is-the-single-most-influential-book-every-programmer-should-read)
+
 
 2022.10.18
 + [ 开源的未来：为什么开源核心已死？](https://www.infoq.cn/article/eQRGLjAzl3mjhhwPTE14)

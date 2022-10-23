@@ -15,6 +15,7 @@ permalink: /note/
 + [我看绩效考核](https://coolshell.cn/articles/17972.html)
   1. KPI毁了索尼
   2. 做正确的事，然后等着被开。与其去适应糟糕的环境，不如自己去寻找适合的土壤。
+  3. [继做正确的事等着被开之后问答](https://mp.weixin.qq.com/s?__biz=MzUyOTA1NTkzNw==&mid=2247484417&idx=1&sn=316f9f6d6ac7cdca97123815a67a665a&chksm=fa67adafcd1024b948caed0e5528c4817a7ef2b1b1a3ab8da34e0ff4231b28c2659ee9951112#rd)
 
 
 2022.10.18

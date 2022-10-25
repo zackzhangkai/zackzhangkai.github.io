@@ -10,6 +10,10 @@ permalink: /note/
 ------------
 
 
+2022.10.25
+------------
++ [ 公众号工具](https://knb.im/mp/)
+
 2022.10.23
 ----------------
 + [我看绩效考核](https://coolshell.cn/articles/17972.html)

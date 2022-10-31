@@ -30,7 +30,7 @@ permalink: /note/
     1. 服务之间通信无 tls速度快
     2. 负载均衡做 tls 卸载后可以识别流量，防止恶意攻击
     3. 减少运维配置的复杂性，无需给每个服务配置 tls 证书
-
+  3. [通过脚本生成自签名证书](https://github.com/envoyproxy/envoy/blob/20e4dd2c0e5bacf07cd2fa7f559ae4714da8f905/examples/double-proxy/verify.sh#L37)
 
 2022.10.28
 ------------

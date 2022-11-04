@@ -9,6 +9,10 @@ permalink: /note/
 
 ------------
 
+2022.11.4
++ [jq 的常用使用方法](https://stedolan.github.io/jq/tutorial/)
+  1. [jq的官方 wiki有更多详细的文档](https://github.com/stedolan/jq/wiki/Cookbook#filter-objects-based-on-the-contents-of-a-key)
+  1. ` ~ sudo cat /tmp/bb.txt | jq '.dataObject.dataList[0].dataList'  | jq  -c '.[] | select(.[5] | contains("21:","20:","19:"))' | sort  |uniq`
 2022.10.31
 -----------
 + [beatifyjson 格式化 - 工具](https://www.beautifyjson.org/)

@@ -8,6 +8,12 @@ permalink: /note/
 {:toc}
 
 ------------
+2022.11.9
+----------
++ [k8s 的 json 的 Patch / merge/stategic 区别](https://www.jianshu.com/p/8eb47409bc6d)
+  1. [RFC6902 json patch](https://www.rfc-editor.org/rfc/rfc6902), 使用  action path value 的方式操作 json，如 patch   add /api/zackzhangkai/name zack
+  2. [RFC7396 json merge patch](https://www.rfc-editor.org/rfc/rfc7396)，k8s 默认为这种 patch 方式。当 patch 列表时，会在列表后面 append 新的元素。
+  3. stategic merge patch 是 patch 的变种，在 k8s type 字段中字义是否为这种类型。如 merge在操作列表时，会append。但如果执行为 strategic，则是直接替换replace。
 
 2022.11.4
 + [jq 的常用使用方法](https://stedolan.github.io/jq/tutorial/)

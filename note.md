@@ -8,7 +8,50 @@ permalink: /note/
 {:toc}
 
 ------------
+2022.11.9
+----------
++ [k8s 的 json 的 Patch / merge/stategic 区别](https://www.jianshu.com/p/8eb47409bc6d)
+  1. [RFC6902 json patch](https://www.rfc-editor.org/rfc/rfc6902), 使用  action path value 的方式操作 json，如 patch   add /api/zackzhangkai/name zack
+  2. [RFC7396 json merge patch](https://www.rfc-editor.org/rfc/rfc7396)，k8s 默认为这种 patch 方式。当 patch 列表时，会在列表后面 append 新的元素。
+  3. stategic merge patch 是 patch 的变种，在 k8s type 字段中字义是否为这种类型。如 merge在操作列表时，会append。但如果执行为 strategic，则是直接替换replace。
 
+2022.11.4
++ [jq 的常用使用方法](https://stedolan.github.io/jq/tutorial/)
+  1. [jq的官方 wiki有更多详细的文档](https://github.com/stedolan/jq/wiki/Cookbook#filter-objects-based-on-the-contents-of-a-key)
+  2. [stackoverflow 上的问答](https://stackoverflow.com/questions/26701538/how-to-filter-an-array-of-objects-based-on-values-in-an-inner-array-with-jq)
+  1. ` ~ sudo cat /tmp/bb.txt | jq '.dataObject.dataList[0].dataList'  | jq  -c '.[] | select(.[5] | contains("21:","20:","19:"))' | sort  |uniq`
+2022.10.31
+-----------
++ [beatifyjson 格式化 - 工具](https://www.beautifyjson.org/)
++ [云原生对开发者意味着什么](https://segmentfault.com/a/1190000042716087)
+  1. 上云1.0 只是讲应用搬到云的虚拟机上，但缺少对开发过程的关注，如开发框架选型、应用快速部署交付、资源算力弹性管理。这个层面，对开发者而言，只是通过基础设置提升了基础资源的使用率。
+  2. 上云 2.0，不再只是讲应用搬到云上虚拟机。核心是：将应用的每个部分进行打包、动态编排，每个部分都能被主动调度和管理。
+  3. 通过将基础设施与业务平台融合，这些能力得以“排列组合”到一起，为业务应用提供标准的运行、监控、治理平台。这让开发者将关注点从资源，转移到开发本身。
+  4. 比如：微服务通过把应用程序构造成一组服务进行开发部署，大提高了业务的敏捷性；通过 Devops，进行持续集成交付以实现完整的自动化和上云协同。
+  5. 通过云原生技术来构建应用，开发者不再需要耗费大量时间去考虑底层技术实现，通过好用的云原生工具，就能快速调用和管理底层资源，所有算力能自动启动、伸缩，快速响应业务，有效提升了资源利用率，降低开发成本。
+  6. 得益于此，开发者有更多精力来思考业务。
++ [为什么需要 https](https://www.runoob.com/w3cnote/https-ssl-intro.html)
+  1. 证书认证过程：
+    - 浏览器访问https 网站
+    - 网站返回一个证书，该证书带有公钥、过期时间、cn（网址）
+    - 浏览器校验是否过期，网址是否对得上。通过后，生成盐字符串，通过公钥加密给到网站
+    - 网站通过私钥解密出盐
+    - 之后网站与浏览器通信就通过这个随机盐加密内容
+  2. TLS 终止，浏览器 => 负载均衡 （tls 终止）=>  服务 ，优点：
+    1. 服务之间通信无 tls速度快
+    2. 负载均衡做 tls 卸载后可以识别流量，防止恶意攻击
+    3. 减少运维配置的复杂性，无需给每个服务配置 tls 证书
+  3. [通过脚本生成自签名证书](https://github.com/envoyproxy/envoy/blob/20e4dd2c0e5bacf07cd2fa7f559ae4714da8f905/examples/double-proxy/verify.sh#L37)
+
+2022.10.28
+------------
++ [cors csrf xss 的区别](https://zhuanlan.zhihu.com/p/92255672)
+  1. cors 跨域请求资源共享，ajax 回调函数可以请求其他域名资源
+  2. csrf 跨域请求伪造，当浏览器登陆某一网站后，本地会生成 cookie，下次再次访问这个网站时，不用登陆。如果在这时访问一个恶意网站，浏览器带上 cookie 后，恶意网站获取 cookie 后，给目的网站发送消息。
+  3. xss 恶意网站在网站上放置恶意脚本，当登陆时会泄漏 cookie 用户名 密码。
+2022.10.25
+------------
++ [ 公众号工具](https://knb.im/mp/)
 
 2022.10.23
 ----------------

@@ -1,7 +1,6 @@
 **<p align="center">[zack's Blog](https://zackzhangkai.github.io)</p>**
-**<p align="center">用于记录一些幼稚的想法和脑残的瞬间~</p>**
 ## 联系方式
-- Twitter：[@kai_amm](https://twitter.com/kai_amm)
+- Twitter：[@kai_amm](https://twitter.com/kaiz_amm)
 - Email：[zhangkaiamm@google.com](mailto:zhangkaiamm@gmail.com)
 - Blog：[https://zackzhangkai.github.io](https://zackzhangkai.github.io)
 ## 置顶文章

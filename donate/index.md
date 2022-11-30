@@ -11,6 +11,7 @@ permlink: /method
 微信
 
 ![微信]({{ '/styles/images/weixin.png' | prepend: site.baseurl }})
-![公众号]({{ '/styles/images/wechat.png' | prepend: site.baseurl }})
+
+![公众号](/styles/images/wechat.png')
 
 

@@ -11,6 +11,13 @@ permalink: /note/
 
 2023.1.29
 -----------
++ [envoy 社区在支持 go 插件](https://github.com/envoyproxy/envoy/pull/22573)
+  1. [写的设计文档非常的专业](https://docs.google.com/document/d/1noApyS0IfmOGmEOHdWk2-BOp0V37zgXMM4MdByr1lQk/edit#heading=h.ks9gl1pw72iu)
+  2. 对比了 go 与 lua 、wasm、c++的优劣后，说明了为什么要支持 go 作为插件
+
+
+2023.1.29
+-----------
 + [技术管理的思考，以及 35 岁焦虑](https://www.infoq.cn/article/1y50p46mqc05rxlWsAKl)
   1. 是否适合技术管理？技术管理问三个问题，至少有两个回答“是”才符合。
     - 是否能面临不确定性？核心员工离职

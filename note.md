@@ -9,6 +9,26 @@ permalink: /note/
 
 ------------
 
+
+2023.1.29
+-----------
++ [数字游民的网站](https://nomadlist.com/buenos-aires)
+  1. 网站是收费的，在解释为什么要收费时，说了这样的一个观点：开源的软件与网络服务不一样。
+  以下是翻译：
+  ```
+   I love free software and could not have built my site without it. But free web services are not like free software. If your free software project suddenly gets popular, you gain resources: testers, developers and people willing to pitch in. If your free website takes off, you lose resources. Your time is spent firefighting and your money all goes to the nice people at Linode.
+    我喜欢免费软件,没有它我就无法构建我的网站。 但免费的网络服务不像免费软件。如果您的免费软件项目突然变得流行,您会获得资源:测试人员、开发人员以及有意投入时间的人。如果您的免费网站脱颖而出,您会失去资源。您的时间花在灭火上,您的钱都被付给Linode那些友好的人。
+    大概意思是:
+    作者喜欢免费开源软件,他的网站就是建立在免费开源软件之上。
+    但是免费的网络服务(如SaaS服务)不一样,如果突然变得很火烫,并不会像免费开源软件那样给予更多资源(开发者、贡献者等)。
+    相反,免费网站一旦流行起来,作者就会花费更多时间处理问题、应对压力,而花费(如带宽、存储)全都花在提供这个服务上,不会有回报。
+    作者用的例子是虚拟主机Linode(他的网站是部署在Linode上的),他的钱全花在Linode上面。
+    所以,他的意思是:
+    免费开源软件的流行会给予更多资源,而免费网络服务的流行则会消耗更多资源(时间和金钱)。
+    两个模式本质上是不一样的。
+    总的来说,他是在赞扬免费开源软件的模式,他的网站也是建立在这种模式之上。但是对于免费网络服务,他的看法比较悲观。
+    ```
+
 2023.1.29
 -----------
 + [envoy 社区在支持 go 插件](https://github.com/envoyproxy/envoy/pull/22573)

@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: 2023-05-31-kubernetes 抓包利器之 kubeshark
 categories: [document]
 tags: [云原生,kubeshark,kubernetes,抓包]

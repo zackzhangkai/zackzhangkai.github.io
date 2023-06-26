@@ -1,4 +1,13 @@
-# 2023-06-26-关于 pvc 与 volumeClaimTemplate 的使用
+---
+layout: post
+published: true
+title: 2023-06-26-关于 pvc 与 volumeClaimTemplate 的使用区别
+categories: [document]
+tags: [k8s,pvc,volumeClaimTemplate]
+---
+* content
+{:toc}
+
 
 # 区别：
 

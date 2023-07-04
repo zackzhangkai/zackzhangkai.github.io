@@ -9,8 +9,12 @@ permalink: /note/
 
 ------------
 
+
+
 2023.7.14
 -----------
++ [rts一个二进制文件，可以自动把请求的 response 转成 go 的 struct](https://github.com/galeone/rts)
+
 + [强大的gitpod](https://medium.com/@aafenguk/%E8%AF%95%E7%94%A8gitpod%E5%9C%A8%E7%BA%BFide-8e8c751ed64f)
   - 在线的vscode ide，不需要 clone 到本地看代码。
   - 提供外网的 terminal，可以使用 docker 命令。

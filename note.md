@@ -9,6 +9,13 @@ permalink: /note/
 
 ------------
 
+2023.7.14
+-----------
++ [强大的gitpod](https://medium.com/@aafenguk/%E8%AF%95%E7%94%A8gitpod%E5%9C%A8%E7%BA%BFide-8e8c751ed64f)
+  - 在线的vscode ide，不需要 clone 到本地看代码。
+  - 提供外网的 terminal，可以使用 docker 命令。
+  * 每个月有 50 个小时的免费使用限制。
+  * 对于任何一个Github项目，只需要在前面添加：`[https://gitpod.io#](https://gitpod.io/#)`  就可以使用 gitpod
 
 2023.1.29
 -----------
@@ -28,7 +35,7 @@ permalink: /note/
     两个模式本质上是不一样的。
     总的来说,他是在赞扬免费开源软件的模式,他的网站也是建立在这种模式之上。但是对于免费网络服务,他的看法比较悲观。
     ```
-  2. [一个成功的独立开发者相关介绍](https://www.v2ex.com/member/DanielNg23)  
+  1. [一个成功的独立开发者相关介绍](https://www.v2ex.com/member/DanielNg23)  
     1. nomad 数字游民
     2. 到了一定阶段后，需要脱离代码，代码更多是在消耗体力
     3. 要有商业意识

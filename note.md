@@ -9,6 +9,11 @@ permalink: /note/
 
 ------------
 
+2023.11.25
+---------------
++ [小学生看懂的ebpf教程](https://ebpf.io/books/buzzing-across-space-illustrated-childrens-guide-to-ebpf.pdf)
+
+
 2023.11.15
 -------------------
 + [chatPDF，上传一篇pdf，然后基于它去提问，快速找到信息](https://www.chatpdf.com/)

@@ -9,6 +9,11 @@ permalink: /note/
 
 ------------
 
+2023.12.29
+-----------
++ [深度学习中文资料-基于Python](https://zh.d2l.ai/chapter_preface/index.html)
+
+
 2023.11.25
 ---------------
 + [小学生看懂的ebpf教程](https://ebpf.io/books/buzzing-across-space-illustrated-childrens-guide-to-ebpf.pdf)

@@ -9,6 +9,10 @@ permalink: /note/
 
 ------------
 
+2024.3.14
+-----------
++ [40岁的编程经验](https://liw.fi/40/#index2h1)
+
 2023.12.29
 -----------
 + [深度学习中文资料-基于Python](https://zh.d2l.ai/chapter_preface/index.html)

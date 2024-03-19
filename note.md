@@ -11,6 +11,10 @@ permalink: /note/
 
 2024.3.19
 -----------
++ [go map slice新特性](https://henry.precheur.org/go/generics_improvements_for_maps_and_slices/)
+  - 1.20开始，引入了golang.org/x/exp/maps和golang.org/x/exp/slices，可以使用maps.Clone maps.Equal和slices.Min slices.Max
+  - 其实之前用reflect.DeepEqual 和 reflect.Copy也可以满足需求
+
 + [goroutine的调度策略](https://blog.devtrovert.com/p/goroutine-scheduler-revealed-youll)
   - GMP： G:轻量级线程goroutine，P:逻辑处理器，M:操作系统线程资源，一个go程序可以使用10000个线程M，而不是10000个Goroutine
   - Goroutine三个状态：运行中 等待运行 可运行 runnable running wating

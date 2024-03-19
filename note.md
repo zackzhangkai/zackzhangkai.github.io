@@ -9,6 +9,17 @@ permalink: /note/
 
 ------------
 
+2024.3.19
+-----------
++ [goroutine的调度策略](https://blog.devtrovert.com/p/goroutine-scheduler-revealed-youll)
+  - GMP： G:轻量级线程goroutine，P:逻辑处理器，M:操作系统线程资源，一个go程序可以使用10000个线程M，而不是10000个Goroutine
+  - Goroutine三个状态：运行中 等待运行 可运行 runnable running wating
+  - 每个线程P有一个本地队列，长度256
+  - 协程创建后，优先找本地队列，若本地队列满则放入全局队列
+  - P的大小为机器逻辑处理器的数量
+  - M的大小为操作系统线程的数量，一般10000个
+  - 一个P需要绑定一个M才能运行P中的goroutine,如果这个P队列中的G全部运行完了，则会从全局队列中获取G，如果全局队列中也没有G，则会从其他P队列中偷G
+
 2024.3.14
 -----------
 + [40岁的编程经验](https://liw.fi/40/#index2h1)

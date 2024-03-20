@@ -7,7 +7,11 @@ permalink: /note/
 * content
 {:toc}
 
-------------
+-----------
+2024.3.20
+-----------
++ [使用go写前端，wails，类似js的桌面应用electron](https://github.com/wailsapp/wails)
+  - QT的桌面应用
 
 2024.3.19
 -----------

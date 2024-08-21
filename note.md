@@ -9,6 +9,17 @@ permalink: /note/
 
 -----------
 
+
+
+2024.8.21
+-----------
++ [基于go的干净架构](https://github.com/amitshekhariitbhu/go-backend-clean-architecture?tab=readme-ov-file)
+  - [http polling,http long polling,websocket,sse的区别](https://www.youtube.com/watch?v=8ksWRX4xV-s)
+  - 架构分三层，根据 domain,model,entity分成controller,usercase,reponsitory
+
+
+
+
 2024.3.27
 -----------
 + [go的slice内存分本](https://sazak.io/articles/visual-guide-to-slices-in-go-2024-03-25)

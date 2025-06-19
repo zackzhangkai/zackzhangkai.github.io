@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "12e9f53289ffe2e1",
+        "id": "5abe24a3e3142854",
         "type": "tabs",
         "children": [
           {
-            "id": "56713c95fad4e76e",
+            "id": "fbea371d15147994",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2023-12-31-基于Openfaas实现云函数实战 copy.md",
+                "file": "_posts/2025-06-19-在POD中验证GPU是否可用.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2023-12-31-基于Openfaas实现云函数实战 copy"
+              "title": "2025-06-19-在POD中验证GPU是否可用"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "_posts/2023-12-31-基于Openfaas实现云函数实战 copy.md",
+                "file": "_posts/2025-06-19-在POD中验证GPU是否可用.md",
                 "collapseAll": true,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2023-12-31-基于Openfaas实现云函数实战 copy 的反向链接列表"
+              "title": "2025-06-19-在POD中验证GPU是否可用 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "_posts/2023-12-31-基于Openfaas实现云函数实战 copy.md",
+                "file": "_posts/2025-06-19-在POD中验证GPU是否可用.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2023-12-31-基于Openfaas实现云函数实战 copy 的出链列表"
+              "title": "2025-06-19-在POD中验证GPU是否可用 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "_posts/2023-12-31-基于Openfaas实现云函数实战 copy.md",
+                "file": "_posts/2025-06-19-在POD中验证GPU是否可用.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2023-12-31-基于Openfaas实现云函数实战 copy 的大纲"
+              "title": "2025-06-19-在POD中验证GPU是否可用 的大纲"
             }
           }
         ],
@@ -169,8 +169,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "ef13e9fee20050a1",
+  "active": "fbea371d15147994",
   "lastOpenFiles": [
+    "_posts/2023-12-31-基于Openfaas实现云函数实战 copy.md",
     "images/openfaas-ui.png",
     "_posts/2025-06-19-cuda是什么，有什么用.md",
     "_posts/2025-06-19-在POD中验证GPU是否可用.md",

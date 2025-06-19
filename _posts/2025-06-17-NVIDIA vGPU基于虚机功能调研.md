@@ -169,6 +169,7 @@ Wed Jun 18 14:10:22 2025
 ### 启用sriov
 
 调用nvidia的sriov-manage工具，可以指定特定的GPU卡
+
 ```bash
 /usr/lib/nvidia/sriov-manage -e 0:e8:0.0
 
@@ -177,6 +178,7 @@ Wed Jun 18 14:10:22 2025
 ```
 
 > 如果要对所有的卡启用，可以 -h 看help参数，参数中 -e all则是对所有的卡启用sriov。help参数中列出了对卡禁用sriov的方式。
+
 ```bash
 # /usr/lib/nvidia/sriov-manage -h 
 Usage:

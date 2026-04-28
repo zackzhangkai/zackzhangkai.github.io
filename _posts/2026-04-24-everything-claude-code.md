@@ -83,3 +83,4 @@ cp -r .claude/* ~/.claude/
 | 标题 | 地址 | 日期 |
 |------|------|------|
 | DeepSeek 最新模型解读 | [deepseek-ppt.vercel.app](https://deepseek-ppt.vercel.app) | 2026.04 |
+| Kimi K2.6 模型解读 | [kimi-ppt.vercel.app](https://kimi-ppt.vercel.app) | 2026.04 |

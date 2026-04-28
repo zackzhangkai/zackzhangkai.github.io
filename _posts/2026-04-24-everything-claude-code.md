@@ -77,10 +77,3 @@ cp -r .claude/* ~/.claude/
 ---
 
 > Everything Claude Code 不仅仅是一套配置文件，而是一个完整的 **AI Agent 性能优化生态系统**。
-
-## PPT 演示
-
-| 标题 | 地址 | 日期 |
-|------|------|------|
-| DeepSeek 最新模型解读 | [deepseek-ppt.vercel.app](https://deepseek-ppt.vercel.app) | 2026.04 |
-| Kimi K2.6 模型解读 | [kimi-ppt.vercel.app](https://kimi-ppt.vercel.app) | 2026.04 |

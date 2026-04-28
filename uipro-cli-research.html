@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>uipro-cli 调研报告</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --border: #2d3148;
+      --text: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --red: #f87171;
+      --blue: #60a5fa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .top-bar {
+      background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+      padding: 12px 0;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.5px;
+    }
+    .top-bar a { color: #fff; text-decoration: underline; }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .header .meta {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .header .meta span { margin: 0 8px; }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .badge-purple { background: rgba(124,58,237,0.15); color: var(--accent-light); border: 1px solid rgba(124,58,237,0.3); }
+    .badge-green { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+    .badge-blue { background: rgba(96,165,250,0.15); color: var(--blue); border: 1px solid rgba(96,165,250,0.3); }
+    .badge-yellow { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(124,58,237,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .info-card .label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .info-card .value {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .info-card .value a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+    .info-card .value a:hover { text-decoration: underline; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: rgba(124,58,237,0.1);
+      color: var(--accent-light);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(45,49,72,0.5);
+      color: var(--text-secondary);
+    }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    code {
+      background: rgba(124,58,237,0.15);
+      color: var(--accent-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    }
+    pre {
+      background: #0d0f1a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    pre code {
+      background: none;
+      color: var(--text);
+      padding: 0;
+    }
+    .highlight-purple { color: var(--accent-light); }
+    .highlight-green { color: var(--green); }
+    .highlight-yellow { color: var(--yellow); }
+    .highlight-blue { color: var(--blue); }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .resource-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      transition: border-color 0.2s;
+    }
+    .resource-card:hover { border-color: var(--accent); }
+    .resource-card .r-name {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .resource-card .r-url a {
+      color: var(--accent-light);
+      font-size: 0.85rem;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .resource-card .r-url a:hover { text-decoration: underline; }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(59,130,246,0.1));
+      border: 1px solid rgba(124,58,237,0.3);
+      border-radius: 12px;
+      padding: 24px 32px;
+      text-align: center;
+      margin-top: 32px;
+    }
+    .cta-box h3 {
+      color: var(--accent-light);
+      margin-bottom: 8px;
+    }
+    .cta-box p { color: var(--text-secondary); font-size: 0.9rem; }
+    .cta-box code { font-size: 1rem; }
+
+    .stats-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 120px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-item .num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+    .stat-item .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 { font-size: 1.8rem; }
+      .section { padding: 20px; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    uipro-cli 调研报告 &nbsp;|&nbsp; 调研时间：2026-04-28 &nbsp;|&nbsp; 工具版本：v2.2.3 &nbsp;|&nbsp;
+    <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill">GitHub →</a>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h1>uipro-cli 调研报告</h1>
+      <div class="meta">
+        <span>📦 uipro-cli@2.2.3</span>
+        <span>|</span>
+        <span>⭐ 71.5k+ GitHub Stars</span>
+        <span>|</span>
+        <span>📄 CC-BY-NC-4.0</span>
+      </div>
+      <div class="badge-row">
+        <span class="badge badge-purple">🤖 AI Skill Installer</span>
+        <span class="badge badge-green">🎨 67 UI Styles</span>
+        <span class="badge badge-blue">🎨 161 Color Palettes</span>
+        <span class="badge badge-yellow">🔤 57 Font Pairings</span>
+        <span class="badge badge-green">🏗️ Design System Gen</span>
+        <span class="badge badge-blue">🤖 18+ AI Assistants</span>
+      </div>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">📖</div>简介</div>
+      <p><code>uipro-cli</code>（命令名 <code>uipro</code>）是一个为 AI 编码助手安装 <strong>UI/UX Pro Max</strong> 技能的 CLI 工具，为 AI 助手注入专业级 UI/UX 设计智能。</p>
+      <div class="info-grid" style="margin-top:20px">
+        <div class="info-card">
+          <div class="label">npm 包</div>
+          <div class="value"><a href="https://www.npmjs.com/package/uipro-cli" target="_blank">npmjs.com/package/uipro-cli</a></div>
+        </div>
+        <div class="info-card">
+          <div class="label">GitHub 仓库</div>
+          <div class="value"><a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank">nextlevelbuilder/ui-ux-pro-max-skill</a></div>
+        </div>
+        <div class="info-card">
+          <div class="label">官方文档</div>
+          <div class="value"><a href="https://ui-ux-pro-max-skill.com/en/docs/cli-reference/" target="_blank">ui-ux-pro-max-skill.com</a></div>
+        </div>
+        <div class="info-card">
+          <div class="label">官网</div>
+          <div class="value"><a href="https://uupm.cc" target="_blank">uupm.cc</a></div>
+        </div>
+        <div class="info-card">
+          <div class="label">DeepWiki</div>
+          <div class="value"><a href="https://deepwiki.com/nextlevelbuilder/ui-ux-pro-max-skill/" target="_blank">架构文档</a></div>
+        </div>
+        <div class="info-card">
+          <div class="label">GitHub Stars</div>
+          <div class="value highlight-purple">71,500+</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">📊</div>核心资源统计</div>
+      <div class="stats-row">
+        <div class="stat-item"><div class="num highlight-purple">67</div><div class="label">UI 风格</div></div>
+        <div class="stat-item"><div class="num highlight-blue">161</div><div class="label">配色方案</div></div>
+        <div class="stat-item"><div class="num highlight-green">57</div><div class="label">字体搭配</div></div>
+        <div class="stat-item"><div class="num highlight-yellow">161</div><div class="label">行业推理规则</div></div>
+      </div>
+      <p style="color:var(--text-secondary); font-size:0.9rem;">v2.0 新增：智能设计系统生成器 — 自动分析项目，输出完整定制化设计系统（模式 + 风格 + 配色 + 排版 + 特效 + 反模式建议）</p>
+    </div>
+
+    <!-- 支持的 AI 助手 -->
+    <div class="section">
+      <div class="section-title"><div class="icon">🤖</div>支持的 AI 助手（18+）</div>
+      <table>
+        <tr><th>AI 助手</th><th>安装命令</th><th>AI 助手</th><th>安装命令</th></tr>
+        <tr><td>Claude Code</td><td><code>uipro init --ai claude</code></td><td>GitHub Copilot</td><td><code>uipro init --ai copilot</code></td></tr>
+        <tr><td>Cursor</td><td><code>uipro init --ai cursor</code></td><td>OpenCode</td><td><code>uipro init --ai opencode</code></td></tr>
+        <tr><td>Windsurf</td><td><code>uipro init --ai windsurf</code></td><td>Roo Code</td><td><code>uipro init --ai roocode</code></td></tr>
+        <tr><td>Gemini CLI</td><td><code>uipro init --ai gemini</code></td><td>Codex CLI</td><td><code>uipro init --ai codex</code></td></tr>
+        <tr><td>Trae</td><td><code>uipro init --ai trae</code></td><td>Continue</td><td><code>uipro init --ai continue</code></td></tr>
+        <tr><td>Kiro</td><td><code>uipro init --ai kiro</code></td><td>Qoder</td><td><code>uipro init --ai qoder</code></td></tr>
+        <tr><td>Antigravity</td><td><code>uipro init --ai antigravity</code></td><td>全部助手</td><td><code>uipro init --ai all</code></td></tr>
+      </table>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">🛠️</div>支持的技术栈</div>
+      <div class="badge-row" style="justify-content:flex-start">
+        <span class="badge badge-blue">React</span>
+        <span class="badge badge-blue">Next.js</span>
+        <span class="badge badge-blue">shadcn/ui</span>
+        <span class="badge badge-blue">Vue / Nuxt</span>
+        <span class="badge badge-blue">Nuxt UI</span>
+        <span class="badge badge-blue">Svelte</span>
+        <span class="badge badge-blue">Astro</span>
+        <span class="badge badge-blue">Angular</span>
+        <span class="badge badge-blue">Laravel</span>
+        <span class="badge badge-green">SwiftUI</span>
+        <span class="badge badge-green">Jetpack Compose</span>
+        <span class="badge badge-green">React Native</span>
+        <span class="badge badge-green">Flutter</span>
+        <span class="badge badge-yellow">HTML + Tailwind</span>
+      </div>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">⌨️</div>CLI 命令一览</div>
+      <pre><code><span class="highlight-yellow"># 安装 CLI</span>
+npm install -g uipro-cli
+
+<span class="highlight-yellow"># 安装技能到指定 AI 助手</span>
+uipro init --ai opencode
+uipro init --ai claude
+uipro init --ai cursor
+uipro init --ai all          <span class="highlight-green"># 全部</span>
+
+<span class="highlight-yellow"># 选项</span>
+uipro init --offline         <span class="highlight-blue"># 跳过 GitHub 下载，使用本地资源</span>
+uipro init --force           <span class="highlight-blue"># 强制覆盖已有文件</span>
+
+<span class="highlight-yellow"># 其他命令</span>
+uipro versions               <span class="highlight-green"># 查看可用版本</span>
+uipro update                 <span class="highlight-green"># 更新到最新版</span>
+uipro uninstall              <span class="highlight-red"># 卸载技能（自动检测平台）</span>
+uipro uninstall --ai claude  <span class="highlight-red"># 卸载指定平台</span>
+uipro uninstall --global     <span class="highlight-red"># 卸载全局安装</span></code></pre>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">⚙️</div>工作原理</div>
+      <ol style="color:var(--text-secondary); padding-left:20px; line-height:2">
+        <li>运行 <code>uipro init --ai &lt;platform&gt;</code></li>
+        <li>CLI 检测当前平台（扫描 <code>.cursor/</code>、<code>.claude/</code> 等）或使用 <code>--ai</code> 参数</li>
+        <li><strong>默认模式（Template）</strong>：从内置模板动态生成平台专属技能文件</li>
+        <li><strong>旧版模式（--legacy）</strong>：从 GitHub Releases 下载 ZIP 并解压</li>
+        <li>若 GitHub 下载失败（限流/网络），<strong>自动回退</strong>到 CLI 内置资源包</li>
+        <li>技能文件夹被放置到对应平台的配置目录（如 <code>.claude/skills/ui-ux-pro-max/</code>）</li>
+      </ol>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">🔧</div>技术细节</div>
+      <table>
+        <tr><th>依赖</th><th>用途</th></tr>
+        <tr><td><code>commander</code></td><td>CLI 参数解析与子命令路由</td></tr>
+        <tr><td><code>chalk</code></td><td>彩色终端输出</td></tr>
+        <tr><td><code>ora</code></td><td>异步操作动画 spinner</td></tr>
+        <tr><td><code>prompts</code></td><td>交互式平台选择菜单</td></tr>
+      </table>
+      <div class="divider"></div>
+      <p style="color:var(--text-secondary); font-size:0.9rem;">
+        构建工具：<code>Bun</code> &nbsp;|&nbsp;
+        运行时：<code>Node.js</code> &nbsp;|&nbsp;
+        包大小：轻量，仅 23 个依赖 &nbsp;|&nbsp;
+        许可证：<code>CC-BY-NC-4.0</code>
+      </p>
+    </div>
+
+
+    <div class="section">
+      <div class="section-title"><div class="icon">🎯</div>适用场景</div>
+      <ul style="color:var(--text-secondary); padding-left:20px; line-height:2">
+        <li>着陆页和营销网站 — 需要快速产出高质量视觉设计</li>
+        <li>Dashboard 和 SaaS 产品 — 需要一致的设计系统</li>
+        <li>任何对配色、字体、视觉风格有要求的项目</li>
+      </ul>
+      <div class="cta-box">
+        <h3>💡 推荐理由</h3>
+        <p>v2.0 设计系统生成器可自动输出完整的设计决策（配色、字体、模式、反模式、交付前检查清单），针对产品类型量身定制。<br>对于使用 AI 编码助手的开发者来说，这是一个显著提升 UI 产出质量的利器。</p>
+      </div>
+    </div>
+
+    <!-- 快速开始 -->
+    <div class="section">
+      <div class="section-title"><div class="icon">🚀</div>快速开始（OpenCode）</div>
+      <pre><code><span class="highlight-yellow"># 1. 安装 CLI</span>
+npm install -g uipro-cli
+
+<span class="highlight-yellow"># 2. 安装 UI/UX Pro Max 技能到 OpenCode</span>
+uipro init --ai opencode
+
+<span class="highlight-yellow"># 3. 重启 OpenCode，技能自动生效</span>
+<span class="highlight-green"># 之后 AI 对话将自动应用专业 UI/UX 设计智能 🎉</span></code></pre>
+    </div>
+
+    <div style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:40px; padding-top:20px; border-top:1px solid var(--border);">
+      调研报告 generated by <strong style="color:var(--accent-light)">Sisyphus</strong> · OpenCode &nbsp;|&nbsp;
+      <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" style="color:var(--accent-light)">GitHub 仓库</a> &nbsp;|&nbsp;
+      <a href="https://ui-ux-pro-max-skill.com" style="color:var(--accent-light)">官方文档</a>
+    </div>
+  </div>
+</body>
+</html>
